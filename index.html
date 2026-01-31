@@ -60,6 +60,7 @@
             font-weight: 700;
         }
         
+        /* Light blue gradient hover effect */
         h1:hover, h2:hover, h3:hover, h4:hover, h5:hover {
             background: linear-gradient(to right, var(--text-primary) 0%, var(--accent-blue) 100%);
             -webkit-background-clip: text;
@@ -67,6 +68,7 @@
             filter: brightness(1.1);
             transform: translateY(-2px);
         }
+
         .heading-secondary {
             opacity: 0.8;
             background: linear-gradient(to right, var(--text-primary) 10%, var(--text-secondary) 90%);
@@ -93,15 +95,6 @@
 
         .navbar-font { font-family: 'Josefin Sans', sans-serif; font-weight: 600; letter-spacing: 0.05em; }
         .mono { font-family: 'JetBrains Mono', monospace; }
-
-        #custom-cursor {
-            width: 20px; height: 20px;
-            background: rgba(147, 197, 253, 0.3);
-            border-radius: 50%;
-            position: fixed; pointer-events: none;
-            z-index: 9999; transition: transform 0.1s ease;
-            backdrop-filter: blur(2px);
-        }
 
         #scroll-progress {
             position: fixed; top: 0; left: 0; height: 3px;
@@ -172,7 +165,6 @@
 </head>
 <body class="selection:bg-blue-500 selection:text-white">
 
-    <div id="custom-cursor"></div>
     <div id="scroll-progress"></div>
 
     <!-- Header - Centered for GitHub Pages -->
@@ -244,8 +236,7 @@
                     <div class="portrait-frame w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96">
                         <div class="border-layer layer-1"></div>
                         <div class="relative z-10 w-full h-full rounded-full overflow-hidden border shadow-2xl" style="background-color: var(--bg-charcoal); border-color: var(--card-border);">
-                             <!-- The 'onerror' attribute here displays a professional placeholder from Unsplash if 'portrait.jpg' is missing -->
-                             <img src="portrait1.JPG" alt="Arunkumar Portrait" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1974&auto=format&fit=crop'">
+                             <img src="portrait.jpg" alt="Arunkumar Portrait" class="w-full h-full object-cover transition-all duration-700" onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1974&auto=format&fit=crop'">
                         </div>
                     </div>
                 </div>
@@ -447,12 +438,11 @@
             </div>
         </section>
 
-        <!-- Achievements and Recognition - Heading Cleaned up -->
+        <!-- Achievements and Recognition -->
         <section id="achievements" class="py-20 border-t" style="border-color: var(--card-border);">
             <div class="container-standard">
                 <div class="fade-in mb-16 text-center">
                     <h2 class="text-sm font-bold uppercase tracking-[0.3em] mb-4 mono" style="color: var(--accent-blue);">Achievements</h2>
-                    <!-- Fixed heading title: "Recognitions" (Removed "and") -->
                     <h3 class="text-4xl md:text-5xl font-bold">Recognitions</h3>
                 </div>
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -566,24 +556,27 @@
         // Particle System
         const canvas = document.getElementById('particle-canvas');
         const ctx = canvas.getContext('2d');
+        const hero = document.getElementById('hero');
         let stars = [];
+
         function resize() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
+            canvas.width = hero.offsetWidth;
+            canvas.height = hero.offsetHeight;
             stars = [];
-            for (let i = 0; i < 50; i++) {
+            for (let i = 0; i < 60; i++) {
                 stars.push({
                     x: Math.random() * canvas.width,
                     y: Math.random() * canvas.height,
-                    size: Math.random() * 1.5,
-                    vx: (Math.random() - 0.5) * 0.6,
-                    vy: (Math.random() - 0.5) * 0.6,
+                    size: Math.random() * 2,
+                    vx: (Math.random() - 0.5) * 0.8,
+                    vy: (Math.random() - 0.5) * 0.8,
                     opacity: Math.random()
                 });
             }
         }
         window.addEventListener('resize', resize);
         resize();
+
         function animateSpace() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             const isLight = body.classList.contains('light-mode');
@@ -592,7 +585,8 @@
                 if (s.x < 0) s.x = canvas.width; if (s.x > canvas.width) s.x = 0;
                 if (s.y < 0) s.y = canvas.height; if (s.y > canvas.height) s.y = 0;
                 ctx.beginPath();
-                ctx.fillStyle = isLight ? `rgba(37, 99, 235, ${s.opacity * 0.2})` : `rgba(255, 255, 255, ${s.opacity * 0.3})`;
+                // Fixed Alpha for visibility in both modes
+                ctx.fillStyle = isLight ? `rgba(37, 99, 235, ${s.opacity * 0.4})` : `rgba(255, 255, 255, ${s.opacity * 0.6})`;
                 ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
                 ctx.fill();
             });
