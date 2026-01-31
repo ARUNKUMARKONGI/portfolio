@@ -42,25 +42,30 @@
             transition: background-color 0.4s ease, color 0.4s ease;
         }
 
+        /* Standard Content Constraint for Professionalism */
         .container-standard {
             max-width: 1100px;
             margin: 0 auto;
             padding: 0 1.5rem;
         }
 
-        h1, h2, h3, h4, h5 { 
+        /* --- Refined Heading Styles --- */
+        h1, h2, h3, h4, h5, .ranade-heading { 
             font-family: 'Josefin Sans', sans-serif;
             background: linear-gradient(to right, var(--text-primary) 20%, var(--text-secondary) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            transition: all 0.4s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             display: inline-block;
             font-weight: 700;
         }
         
         h1:hover, h2:hover, h3:hover, h4:hover, h5:hover {
-            filter: brightness(1.2);
-            transform: translateY(-1px);
+            background: linear-gradient(to right, var(--text-primary) 0%, var(--accent-blue) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: brightness(1.1);
+            transform: translateY(-2px);
         }
 
         .heading-secondary {
@@ -240,6 +245,7 @@
                     <div class="portrait-frame w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96">
                         <div class="border-layer layer-1"></div>
                         <div class="relative z-10 w-full h-full rounded-full overflow-hidden border shadow-2xl" style="background-color: var(--bg-charcoal); border-color: var(--card-border);">
+                             <!-- The 'onerror' attribute here displays a professional placeholder from Unsplash if 'portrait.jpg' is missing -->
                              <img src="portrait.jpg" alt="Arunkumar Portrait" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1974&auto=format&fit=crop'">
                         </div>
                     </div>
@@ -247,11 +253,11 @@
             </div>
         </section>
 
-        <!-- Journey Section - RESTORED AMC -->
+        <!-- Journey Section -->
         <section id="journey" class="py-20 relative border-t" style="background-color: var(--bg-charcoal); border-color: var(--card-border);">
             <div class="container-standard">
                 <div class="fade-in mb-16 text-center">
-                    <h2 class="text-sm font-bold uppercase tracking-[0.3em] mb-4 mono" style="color: var(--accent-blue);">Professional Experience</h2>
+                    <h2 class="text-sm font-bold uppercase tracking-[0.3em] text-blue-500 mb-4 mono">Professional Experience</h2>
                     <h3 class="text-4xl md:text-5xl font-bold">Career Milestones</h3>
                 </div>
 
@@ -310,7 +316,7 @@
                         </div>
                     </div>
 
-                    <!-- AMCEC - FULLY RESTORED -->
+                    <!-- AMCEC -->
                     <div class="glass-card p-8 md:p-10 rounded-3xl fade-in relative">
                         <div class="absolute -top-6 left-8 w-12 h-12 rounded-xl flex items-center justify-center shadow-xl border" style="background-color: var(--bg-charcoal); border-color: var(--card-border);">
                             <i data-lucide="briefcase" class="w-6 h-6" style="color: var(--text-secondary);"></i>
@@ -340,7 +346,7 @@
             </div>
         </section>
 
-        <!-- Academic Content Fully Restored -->
+        <!-- Academic Content -->
         <section id="activities" class="py-20 border-t" style="border-color: var(--card-border);">
             <div class="container-standard">
                 <div class="grid lg:grid-cols-2 gap-16">
@@ -390,7 +396,7 @@
             </div>
         </section>
 
-        <!-- Academic Qualifications - RESTORED 5 Items & Removed Borders -->
+        <!-- Academic Qualifications -->
         <section id="education" class="py-20 border-t" style="background-color: var(--bg-charcoal); border-color: var(--card-border);">
             <div class="container-standard">
                 <div class="fade-in mb-12 text-center">
@@ -398,66 +404,97 @@
                     <h3 class="text-2xl md:text-4xl font-bold">Academic Qualifications</h3>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Qualification 1 -->
                     <div class="glass-card p-8 rounded-3xl fade-in text-left">
-                        <i data-lucide="shield-check" class="w-8 h-8 mb-4" style="color: var(--accent-amber);"></i>
-                        <h5 class="text-xl font-bold mb-1">PhD (CSE) Pursuing</h5>
+                        <div class="flex items-center gap-3 mb-3">
+                            <i data-lucide="shield-check" class="w-6 h-6" style="color: var(--accent-amber);"></i>
+                            <h5 class="text-xl font-bold">PhD (CSE) Pursuing</h5>
+                        </div>
                         <p class="text-sm opacity-60">Visvesvaraya Technological University (VTU) • 2017-Present</p>
                     </div>
+                    <!-- Qualification 2 -->
                     <div class="glass-card p-8 rounded-3xl fade-in text-left">
-                        <i data-lucide="award" class="w-8 h-8 mb-4" style="color: var(--accent-blue);"></i>
-                        <h5 class="text-xl font-bold mb-1">M.Tech (CSE) • 81%</h5>
+                        <div class="flex items-center gap-3 mb-3">
+                            <i data-lucide="award" class="w-6 h-6" style="color: var(--accent-blue);"></i>
+                            <h5 class="text-xl font-bold">M.Tech (CSE) • 81%</h5>
+                        </div>
                         <p class="text-sm opacity-60">AMCEC, VTU • 2012-14</p>
                     </div>
+                    <!-- Qualification 3 -->
                     <div class="glass-card p-8 rounded-3xl fade-in text-left">
-                        <i data-lucide="book-open" class="w-8 h-8 mb-4" style="color: var(--text-secondary);"></i>
-                        <h5 class="text-xl font-bold mb-1">B.Tech (ISE) • 75%</h5>
+                        <div class="flex items-center gap-3 mb-3">
+                            <i data-lucide="book-open" class="w-6 h-6" style="color: var(--text-secondary);"></i>
+                            <h5 class="text-xl font-bold">B.Tech (ISE) • 75%</h5>
+                        </div>
                         <p class="text-sm opacity-60">City Engineering College, VTU • 2008-12</p>
                     </div>
+                    <!-- Qualification 4 -->
                     <div class="glass-card p-8 rounded-3xl fade-in text-left">
-                        <i data-lucide="graduation-cap" class="w-8 h-8 mb-4 text-blue-400"></i>
-                        <h5 class="text-xl font-bold mb-1">UGC-NET Qualified</h5>
+                        <div class="flex items-center gap-3 mb-3">
+                            <i data-lucide="graduation-cap" class="w-6 h-6 text-blue-400"></i>
+                            <h5 class="text-xl font-bold">UGC-NET Qualified</h5>
+                        </div>
                         <p class="text-sm opacity-60">Assistant Professor Eligibility • Awarded 2018</p>
                     </div>
+                    <!-- Qualification 5 -->
                     <div class="glass-card p-8 rounded-3xl fade-in text-left">
-                        <i data-lucide="check-circle" class="w-8 h-8 mb-4 text-green-500"></i>
-                        <h5 class="text-xl font-bold mb-1">K-SET Qualified</h5>
+                        <div class="flex items-center gap-3 mb-3">
+                            <i data-lucide="check-circle" class="w-6 h-6 text-green-500"></i>
+                            <h5 class="text-xl font-bold">K-SET Qualified</h5>
+                        </div>
                         <p class="text-sm opacity-60">Karnataka State Eligibility Test • Awarded 2017</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Achievements - Fully Restored Points -->
+        <!-- Achievements and Recognition - Heading Cleaned up -->
         <section id="achievements" class="py-20 border-t" style="border-color: var(--card-border);">
             <div class="container-standard">
                 <div class="fade-in mb-16 text-center">
-                    <h2 class="text-sm font-bold uppercase tracking-[0.3em] mb-4 mono" style="color: var(--accent-blue);">Milestones</h2>
-                    <h3 class="text-4xl md:text-5xl font-bold">Recognition of Excellence</h3>
+                    <h2 class="text-sm font-bold uppercase tracking-[0.3em] mb-4 mono" style="color: var(--accent-blue);">Achievements</h2>
+                    <!-- Fixed heading title: "Recognitions" (Removed "and") -->
+                    <h3 class="text-4xl md:text-5xl font-bold">Recognitions</h3>
                 </div>
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="glass-card p-8 rounded-[2rem] fade-in border-t-2 border-blue-500">
-                        <i data-lucide="trophy" class="w-10 h-10 mb-6 text-blue-500"></i>
-                        <h5 class="text-xl font-bold mb-3">Moodle Implementation</h5>
+                    <!-- Achievement 1 -->
+                    <div class="glass-card p-8 rounded-[2rem] fade-in">
+                        <div class="flex items-center gap-3 mb-3">
+                            <i data-lucide="trophy" class="w-6 h-6 text-blue-500"></i>
+                            <h5 class="text-xl font-bold">Moodle Implementation</h5>
+                        </div>
                         <p class="text-sm font-light opacity-70 leading-relaxed">Successfully implemented the MOODLE Learning Platform @GRIET with significant institutional impact.</p>
                     </div>
-                    <div class="glass-card p-8 rounded-[2rem] fade-in border-t-2 border-purple-500">
-                        <i data-lucide="globe" class="w-10 h-10 mb-6 text-purple-500"></i>
-                        <h5 class="text-xl font-bold mb-3">Library Website Development</h5>
+                    <!-- Achievement 2 -->
+                    <div class="glass-card p-8 rounded-[2rem] fade-in">
+                        <div class="flex items-center gap-3 mb-3">
+                            <i data-lucide="globe" class="w-6 h-6 text-purple-500"></i>
+                            <h5 class="text-xl font-bold">Library Website</h5>
+                        </div>
                         <p class="text-sm font-light opacity-70 leading-relaxed">Assisted in developing the Central Library website for Central University of Karnataka and received formal appreciation.</p>
                     </div>
-                    <div class="glass-card p-8 rounded-[2rem] fade-in border-t-2 border-amber-500">
-                        <i data-lucide="award" class="w-10 h-10 mb-6 text-amber-500"></i>
-                        <h5 class="text-xl font-bold mb-3">Best Performer Felicitation</h5>
+                    <!-- Achievement 3 -->
+                    <div class="glass-card p-8 rounded-[2rem] fade-in">
+                        <div class="flex items-center gap-3 mb-3">
+                            <i data-lucide="award" class="w-6 h-6 text-amber-500"></i>
+                            <h5 class="text-xl font-bold">Best Performer</h5>
+                        </div>
                         <p class="text-sm font-light opacity-70 leading-relaxed">Recognized by the Honorable Vice Chancellor for outstanding contributions during the 2017-18 academic year at CUK.</p>
                     </div>
-                    <div class="glass-card p-8 rounded-[2rem] fade-in border-t-2 border-green-500">
-                        <i data-lucide="users" class="w-10 h-10 mb-6 text-green-500"></i>
-                        <h5 class="text-xl font-bold mb-3">SIH Mentor</h5>
+                    <!-- Achievement 4 -->
+                    <div class="glass-card p-8 rounded-[2rem] fade-in">
+                        <div class="flex items-center gap-3 mb-3">
+                            <i data-lucide="users" class="w-6 h-6 text-green-500"></i>
+                            <h5 class="text-xl font-bold">SIH Mentor</h5>
+                        </div>
                         <p class="text-sm font-light opacity-70 leading-relaxed">Mentored student teams for Smart India Hackathon, guiding technical innovation and problem-solving strategies.</p>
                     </div>
-                    <div class="glass-card p-8 rounded-[2rem] fade-in border-t-2 border-blue-400">
-                        <i data-lucide="shield-check" class="w-10 h-10 mb-6 text-blue-400"></i>
-                        <h5 class="text-xl font-bold mb-3">Infosys FDP Certified (A+)</h5>
+                    <!-- Achievement 5 -->
+                    <div class="glass-card p-8 rounded-[2rem] fade-in lg:col-span-2">
+                        <div class="flex items-center gap-3 mb-3">
+                            <i data-lucide="shield-check" class="w-6 h-6 text-blue-400"></i>
+                            <h5 class="text-xl font-bold">Infosys FDP Certified (A+)</h5>
+                        </div>
                         <p class="text-sm font-light opacity-70 leading-relaxed">Faculty Development certification from Infosys with an outstanding **A+ Grade** recognition point.</p>
                     </div>
                 </div>
@@ -492,6 +529,7 @@
     <script>
         lucide.createIcons();
 
+        // Theme Toggle
         const themeBtn = document.getElementById('theme-toggle');
         const themeIcon = document.getElementById('theme-icon');
         const body = document.body;
@@ -510,6 +548,7 @@
             lucide.createIcons();
         }
 
+        // Typing Effect
         const roles = ["Technical Trainer", "Placement Trainer", "Moodle Specialist", "Educator"];
         let roleIdx = 0, charIdx = 0, isDeleting = false;
         const typingEl = document.getElementById('typing-target');
@@ -525,6 +564,7 @@
             setTimeout(type, isDeleting ? 40 : 100);
         }
 
+        // Particle System
         const canvas = document.getElementById('particle-canvas');
         const ctx = canvas.getContext('2d');
         let stars = [];
@@ -573,7 +613,7 @@
         const menuBtn = document.getElementById('menu-btn'), closeBtn = document.getElementById('close-menu'), menu = document.getElementById('mobile-menu');
         menuBtn.onclick = () => menu.classList.remove('translate-x-full');
         closeBtn.onclick = () => menu.classList.add('translate-x-full');
-        document.querySelectorAll('.menu-link').forEach(l => l.onclick = () => menu.classList.add('translate-x-full'));
+        document.querySelectorAll('.menu-link').forEach(l => l.onclick = () => menu.classList.remove('open'));
 
         type(); animateSpace();
     </script>
