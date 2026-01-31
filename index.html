@@ -42,15 +42,14 @@
             transition: background-color 0.4s ease, color 0.4s ease;
         }
 
-        /* Standard Content Constraint for Professionalism */
         .container-standard {
             max-width: 1100px;
             margin: 0 auto;
             padding: 0 1.5rem;
         }
 
-        /* --- Refined Heading Styles --- */
-        h1, h2, h3, h4, h5, .ranade-heading { 
+        /* Hover blue gradient for primary headings */
+        h1, h2, h3, h4, h5 { 
             font-family: 'Josefin Sans', sans-serif;
             background: linear-gradient(to right, var(--text-primary) 20%, var(--text-secondary) 100%);
             -webkit-background-clip: text;
@@ -60,20 +59,12 @@
             font-weight: 700;
         }
         
-        /* Light blue gradient hover effect */
         h1:hover, h2:hover, h3:hover, h4:hover, h5:hover {
-            background: linear-gradient(to right, var(--text-primary) 0%, var(--accent-blue) 100%);
+            background: linear-gradient(to right, var(--accent-blue) 0%, var(--text-primary) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: brightness(1.1);
+            filter: brightness(1.2);
             transform: translateY(-2px);
-        }
-
-        .heading-secondary {
-            opacity: 0.8;
-            background: linear-gradient(to right, var(--text-primary) 10%, var(--text-secondary) 90%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
         }
 
         .handwriting-hero {
@@ -105,8 +96,7 @@
         #particle-canvas {
             position: absolute; top: 0; left: 0;
             width: 100%; height: 100%;
-            pointer-events: none; z-index: 0;
-            opacity: 0.4;
+            pointer-events: none; z-index: 1;
         }
 
         .portrait-frame {
@@ -114,16 +104,25 @@
             display: flex; align-items: center; justify-content: center;
         }
 
+        /* Dual Rotating Borders around Portrait */
         .border-layer {
             position: absolute; border-radius: 50%;
-            border: 1px solid transparent;
+            border: 2.5px solid transparent;
             animation: rotate-border linear infinite;
         }
 
         .layer-1 {
             width: calc(100% + 30px); height: calc(100% + 30px);
-            border-top: 2px solid var(--accent-blue);
-            animation-duration: 10s; opacity: 0.3;
+            border-top-color: var(--accent-blue);
+            animation-duration: 8s; opacity: 0.8;
+        }
+
+        .layer-2 {
+            width: calc(100% + 45px); height: calc(100% + 45px);
+            border-bottom-color: var(--accent-amber);
+            animation-duration: 12s; 
+            animation-direction: reverse;
+            opacity: 0.6;
         }
 
         @keyframes rotate-border { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
@@ -153,12 +152,9 @@
         .floating-label input:focus ~ label, .floating-label input:not(:placeholder-shown) ~ label { top: -15px; font-size: 12px; color: var(--accent-blue); }
 
         .theme-toggle-btn {
-            padding: 8px;
-            border-radius: 50%;
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            color: var(--text-primary);
-            transition: all 0.3s ease;
+            padding: 8px; border-radius: 50%;
+            background: var(--card-bg); border: 1px solid var(--card-border);
+            color: var(--text-primary); transition: all 0.3s ease;
             display: flex; align-items: center; justify-content: center;
         }
     </style>
@@ -167,7 +163,6 @@
 
     <div id="scroll-progress"></div>
 
-    <!-- Header - Centered for GitHub Pages -->
     <header class="fixed top-0 w-full z-[1000] border-b border-white/5 backdrop-blur-md" style="background-color: var(--nav-bg);">
         <nav class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between navbar-font">
             <a href="#" class="text-xl font-bold tracking-tighter uppercase">ARUN<span style="color: var(--text-secondary);">KUMAR</span></a>
@@ -179,6 +174,7 @@
                     <li><a href="#activities" class="hover:text-current transition-colors">Academic</a></li>
                     <li><a href="#education" class="hover:text-current transition-colors">Education</a></li>
                     <li><a href="#achievements" class="hover:text-current transition-colors">Achievements</a></li>
+                    <li><a href="#contact" class="hover:text-current transition-colors">Connect</a></li>
                 </ul>
 
                 <button id="theme-toggle" class="theme-toggle-btn" title="Toggle Theme">
@@ -190,7 +186,6 @@
         </nav>
     </header>
 
-    <!-- Mobile Menu -->
     <div id="mobile-menu" class="fixed inset-0 z-[2000] flex flex-col items-center justify-center space-y-8 text-2xl font-light navbar-font translate-x-full transition-transform duration-500" style="background-color: var(--bg-deep);">
         <button id="close-menu" class="absolute top-6 right-6" style="color: var(--text-secondary);"><i data-lucide="x" class="w-8 h-8"></i></button>
         <a href="#journey" class="menu-link">Journey</a>
@@ -198,11 +193,11 @@
         <a href="#activities" class="menu-link">Academic</a>
         <a href="#education" class="menu-link">Education</a>
         <a href="#achievements" class="menu-link">Achievements</a>
-        <a href="#contact" class="menu-link">Contact</a>
+        <a href="#contact" class="menu-link">Connect</a>
     </div>
 
     <main>
-        <!-- Hero Section - Optimized Spacing -->
+        <!-- Hero Section -->
         <section id="hero" class="relative min-h-[90vh] flex items-center pt-24 pb-12 overflow-hidden">
             <canvas id="particle-canvas"></canvas>
             <div class="container-standard grid lg:grid-cols-[1.2fr_0.8fr] gap-8 items-center relative z-10">
@@ -223,7 +218,7 @@
 
                     <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-6 pt-6">
                         <a href="#contact" class="px-10 py-4 rounded-full font-bold transition-all flex items-center gap-2 text-sm shadow-xl hover:scale-105" style="background-color: var(--text-primary); color: var(--bg-deep);">
-                            <span>Connect</span><i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                            <span>Get in touch</span><i data-lucide="arrow-up-right" class="w-4 h-4"></i>
                         </a>
                         <div class="flex items-center space-x-2">
                             <a href="https://linkedin.com/in/arunkkumar-kongi-59bab44a" target="_blank" class="p-3 rounded-full hover:bg-blue-500/10 transition-all" style="color: var(--text-secondary);"><i data-lucide="linkedin" class="w-6 h-6"></i></a>
@@ -235,8 +230,9 @@
                 <div class="relative flex justify-center items-center scale-90 lg:scale-100">
                     <div class="portrait-frame w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96">
                         <div class="border-layer layer-1"></div>
+                        <div class="border-layer layer-2"></div>
                         <div class="relative z-10 w-full h-full rounded-full overflow-hidden border shadow-2xl" style="background-color: var(--bg-charcoal); border-color: var(--card-border);">
-                             <img src="portrait1.JPG" alt="Arunkumar Portrait" class="w-full h-full object-cover transition-all duration-700" onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1974&auto=format&fit=crop'">
+                             <img src="portrait.jpg" alt="Arunkumar Portrait" class="w-full h-full object-cover transition-all duration-700" onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1974&auto=format&fit=crop'">
                         </div>
                     </div>
                 </div>
@@ -252,7 +248,6 @@
                 </div>
 
                 <div class="space-y-12">
-                    <!-- GRIET -->
                     <div class="glass-card p-8 md:p-10 rounded-3xl fade-in relative">
                         <div class="absolute -top-6 left-8 w-12 h-12 rounded-xl flex items-center justify-center shadow-xl border" style="background-color: var(--bg-charcoal); border-color: var(--card-border);">
                             <i data-lucide="briefcase" class="w-6 h-6" style="color: var(--accent-blue);"></i>
@@ -279,7 +274,6 @@
                         </div>
                     </div>
 
-                    <!-- CUK -->
                     <div class="glass-card p-8 md:p-10 rounded-3xl fade-in relative">
                         <div class="absolute -top-6 left-8 w-12 h-12 rounded-xl flex items-center justify-center shadow-xl border" style="background-color: var(--bg-charcoal); border-color: var(--card-border);">
                             <i data-lucide="briefcase" class="w-6 h-6" style="color: var(--text-secondary);"></i>
@@ -306,7 +300,6 @@
                         </div>
                     </div>
 
-                    <!-- AMCEC -->
                     <div class="glass-card p-8 md:p-10 rounded-3xl fade-in relative">
                         <div class="absolute -top-6 left-8 w-12 h-12 rounded-xl flex items-center justify-center shadow-xl border" style="background-color: var(--bg-charcoal); border-color: var(--card-border);">
                             <i data-lucide="briefcase" class="w-6 h-6" style="color: var(--text-secondary);"></i>
@@ -336,6 +329,64 @@
             </div>
         </section>
 
+        <!-- Technical Skillset RESTORED AS PER SNIPPET -->
+        <section id="skills" class="py-12 md:py-16 bg-black border-t border-white/5">
+            <div class="container mx-auto px-6 max-w-6xl">
+                <div class="fade-in mb-8 text-center">
+                    <h2 class="text-sm font-bold uppercase tracking-[0.3em] text-blue-500 mb-4 mono">Technical Skillset</h2>
+                    <h3 class="text-3xl md:text-5xl font-bold">Stack & Tools</h3>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-6xl mx-auto">
+                    <div class="glass-card p-4 rounded-2xl flex items-center gap-4 group hover:scale-[1.02] transition-all">
+                        <div class="shrink-0 w-12 h-12 bg-white/10 border border-white/10 rounded-xl flex items-center justify-center group-hover:bg-white group-hover:text-black transition-colors duration-500">
+                            <i data-lucide="code-2" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <h5 class="text-white font-bold text-base leading-tight mb-0.5">Programming</h5>
+                            <p class="text-zinc-400 text-xs font-light">C, Java, Python, C++, LaTeX</p>
+                        </div>
+                    </div>
+                    <div class="glass-card p-4 rounded-2xl flex items-center gap-4 group hover:scale-[1.02] transition-all">
+                        <div class="shrink-0 w-12 h-12 bg-white/10 border border-white/10 rounded-xl flex items-center justify-center group-hover:bg-white group-hover:text-black transition-colors duration-500">
+                            <i data-lucide="monitor" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <h5 class="text-white font-bold text-base leading-tight mb-0.5">IDE</h5>
+                            <p class="text-zinc-400 text-xs font-light">VS Code, Eclipse, Jupyter, Anaconda</p>
+                        </div>
+                    </div>
+                    <div class="glass-card p-4 rounded-2xl flex items-center gap-4 group hover:scale-[1.02] transition-all">
+                        <div class="shrink-0 w-12 h-12 bg-white/10 border border-white/10 rounded-xl flex items-center justify-center group-hover:bg-white group-hover:text-black transition-colors duration-500">
+                            <i data-lucide="database" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <h5 class="text-white font-bold text-base leading-tight mb-0.5">Backend</h5>
+                            <p class="text-zinc-400 text-xs font-light">MySQL, MongoDB, Node.js, PHP</p>
+                        </div>
+                    </div>
+                    <div class="glass-card p-4 rounded-2xl flex items-center gap-4 group hover:scale-[1.02] transition-all">
+                        <div class="shrink-0 w-12 h-12 bg-white/10 border border-white/10 rounded-xl flex items-center justify-center group-hover:bg-white group-hover:text-black transition-colors duration-500">
+                            <i data-lucide="globe" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <h5 class="text-white font-bold text-base leading-tight mb-0.5">Frontend</h5>
+                            <p class="text-zinc-400 text-xs font-light">HTML5, CSS, JavaScript, React</p>
+                        </div>
+                    </div>
+                    <div class="glass-card p-4 rounded-2xl flex items-center gap-4 group hover:scale-[1.02] transition-all md:col-span-2 lg:col-span-1">
+                        <div class="shrink-0 w-12 h-12 bg-white/10 border border-white/10 rounded-xl flex items-center justify-center group-hover:bg-white group-hover:text-black transition-colors duration-500">
+                            <i data-lucide="award" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <h5 class="text-white font-bold text-base leading-tight mb-0.5">Coding Platforms</h5>
+                            <p class="text-zinc-400 text-xs font-light">Moodle, Examly, Codechef, Leetcode, GFG</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Academic Content -->
         <section id="activities" class="py-20 border-t" style="border-color: var(--card-border);">
             <div class="container-standard">
@@ -349,11 +400,11 @@
                             </div>
                             <div class="border-l-2 pl-6" style="border-color: var(--accent-blue);">
                                 <p class="text-sm mono opacity-50 mb-1">2020-21</p>
-                                <p class="font-light">Visual Programming, Scientific Writing Lab, Multimedia Communications, Embedded Systems</p>
+                                <p class="font-light">Visual Programming, Scientific Writing Lab, Multimedia Communications</p>
                             </div>
                             <div class="border-l-2 pl-6" style="border-color: var(--accent-blue);">
                                 <p class="text-sm mono opacity-50 mb-1">2019-20</p>
-                                <p class="font-light">Operating Systems, Analysis & Design of Algorithms, Advanced Java with Lab</p>
+                                <p class="font-light">Operating Systems, Analysis & Design of Algorithms, Advanced Java</p>
                             </div>
                             <div class="border-l-2 pl-6" style="border-color: var(--accent-blue);">
                                 <p class="text-sm mono opacity-50 mb-1">2014-18</p>
@@ -394,7 +445,6 @@
                     <h3 class="text-2xl md:text-4xl font-bold">Academic Qualifications</h3>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <!-- Qualification 1 -->
                     <div class="glass-card p-8 rounded-3xl fade-in text-left">
                         <div class="flex items-center gap-3 mb-3">
                             <i data-lucide="shield-check" class="w-6 h-6" style="color: var(--accent-amber);"></i>
@@ -402,7 +452,6 @@
                         </div>
                         <p class="text-sm opacity-60">Visvesvaraya Technological University (VTU) • 2017-Present</p>
                     </div>
-                    <!-- Qualification 2 -->
                     <div class="glass-card p-8 rounded-3xl fade-in text-left">
                         <div class="flex items-center gap-3 mb-3">
                             <i data-lucide="award" class="w-6 h-6" style="color: var(--accent-blue);"></i>
@@ -410,7 +459,6 @@
                         </div>
                         <p class="text-sm opacity-60">AMCEC, VTU • 2012-14</p>
                     </div>
-                    <!-- Qualification 3 -->
                     <div class="glass-card p-8 rounded-3xl fade-in text-left">
                         <div class="flex items-center gap-3 mb-3">
                             <i data-lucide="book-open" class="w-6 h-6" style="color: var(--text-secondary);"></i>
@@ -418,7 +466,6 @@
                         </div>
                         <p class="text-sm opacity-60">City Engineering College, VTU • 2008-12</p>
                     </div>
-                    <!-- Qualification 4 -->
                     <div class="glass-card p-8 rounded-3xl fade-in text-left">
                         <div class="flex items-center gap-3 mb-3">
                             <i data-lucide="graduation-cap" class="w-6 h-6 text-blue-400"></i>
@@ -426,7 +473,6 @@
                         </div>
                         <p class="text-sm opacity-60">Assistant Professor Eligibility • Awarded 2018</p>
                     </div>
-                    <!-- Qualification 5 -->
                     <div class="glass-card p-8 rounded-3xl fade-in text-left">
                         <div class="flex items-center gap-3 mb-3">
                             <i data-lucide="check-circle" class="w-6 h-6 text-green-500"></i>
@@ -438,7 +484,7 @@
             </div>
         </section>
 
-        <!-- Achievements and Recognition -->
+        <!-- Recognitions -->
         <section id="achievements" class="py-20 border-t" style="border-color: var(--card-border);">
             <div class="container-standard">
                 <div class="fade-in mb-16 text-center">
@@ -446,7 +492,6 @@
                     <h3 class="text-4xl md:text-5xl font-bold">Recognitions</h3>
                 </div>
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Achievement 1 -->
                     <div class="glass-card p-8 rounded-[2rem] fade-in">
                         <div class="flex items-center gap-3 mb-3">
                             <i data-lucide="trophy" class="w-6 h-6 text-blue-500"></i>
@@ -454,37 +499,33 @@
                         </div>
                         <p class="text-sm font-light opacity-70 leading-relaxed">Successfully implemented the MOODLE Learning Platform @GRIET with significant institutional impact.</p>
                     </div>
-                    <!-- Achievement 2 -->
                     <div class="glass-card p-8 rounded-[2rem] fade-in">
                         <div class="flex items-center gap-3 mb-3">
                             <i data-lucide="globe" class="w-6 h-6 text-purple-500"></i>
                             <h5 class="text-xl font-bold">Library Website</h5>
                         </div>
-                        <p class="text-sm font-light opacity-70 leading-relaxed">Assisted in developing the Central Library website for Central University of Karnataka and received formal appreciation.</p>
+                        <p class="text-sm font-light opacity-70 leading-relaxed">Assisted in developing the Central Library website for Central University of Karnataka.</p>
                     </div>
-                    <!-- Achievement 3 -->
                     <div class="glass-card p-8 rounded-[2rem] fade-in">
                         <div class="flex items-center gap-3 mb-3">
                             <i data-lucide="award" class="w-6 h-6 text-amber-500"></i>
                             <h5 class="text-xl font-bold">Best Performer</h5>
                         </div>
-                        <p class="text-sm font-light opacity-70 leading-relaxed">Recognized by the Honorable Vice Chancellor for outstanding contributions during the 2017-18 academic year at CUK.</p>
+                        <p class="text-sm font-light opacity-70 leading-relaxed">Recognized by the Honorable Vice Chancellor for outstanding contributions at CUK.</p>
                     </div>
-                    <!-- Achievement 4 -->
                     <div class="glass-card p-8 rounded-[2rem] fade-in">
                         <div class="flex items-center gap-3 mb-3">
                             <i data-lucide="users" class="w-6 h-6 text-green-500"></i>
                             <h5 class="text-xl font-bold">SIH Mentor</h5>
                         </div>
-                        <p class="text-sm font-light opacity-70 leading-relaxed">Mentored student teams for Smart India Hackathon, guiding technical innovation and problem-solving strategies.</p>
+                        <p class="text-sm font-light opacity-70 leading-relaxed">Mentored student teams for Smart India Hackathon, guiding technical innovation strategies.</p>
                     </div>
-                    <!-- Achievement 5 -->
                     <div class="glass-card p-8 rounded-[2rem] fade-in lg:col-span-2">
                         <div class="flex items-center gap-3 mb-3">
                             <i data-lucide="shield-check" class="w-6 h-6 text-blue-400"></i>
                             <h5 class="text-xl font-bold">Infosys FDP Certified (A+)</h5>
                         </div>
-                        <p class="text-sm font-light opacity-70 leading-relaxed">Faculty Development certification from Infosys with an outstanding **A+ Grade** recognition point.</p>
+                        <p class="text-sm font-light opacity-70 leading-relaxed">Faculty Development certification from Infosys with an outstanding **A+ Grade** recognition.</p>
                     </div>
                 </div>
             </div>
@@ -495,9 +536,7 @@
             <div class="container-standard text-center max-w-2xl">
                 <div class="fade-in mb-8">
                     <h2 class="text-6xl rustic-heading mb-6">Get in Touch</h2>
-                    <p class="text-base font-light opacity-70 mx-auto max-w-md">
-                        Interested in training programs, workshops, or academic collaboration? Let's talk.
-                    </p>
+                    <p class="text-base font-light opacity-70 mx-auto max-w-md">Interested in training programs or workshops? Let's Talk.</p>
                 </div>
                 <div class="glass-card p-8 md:p-12 rounded-[2.5rem] mt-10 text-left">
                     <form id="contact-form" class="space-y-6">
@@ -519,10 +558,7 @@
         lucide.createIcons();
 
         // Theme Toggle
-        const themeBtn = document.getElementById('theme-toggle');
-        const themeIcon = document.getElementById('theme-icon');
-        const body = document.body;
-
+        const themeBtn = document.getElementById('theme-toggle'), themeIcon = document.getElementById('theme-icon'), body = document.body;
         themeBtn.addEventListener('click', () => {
             body.classList.toggle('light-mode');
             const isLight = body.classList.contains('light-mode');
@@ -530,12 +566,7 @@
             lucide.createIcons();
             localStorage.setItem('theme', isLight ? 'light' : 'dark');
         });
-
-        if (localStorage.getItem('theme') === 'light') {
-            body.classList.add('light-mode');
-            themeIcon.setAttribute('data-lucide', 'sun');
-            lucide.createIcons();
-        }
+        if (localStorage.getItem('theme') === 'light') { body.classList.add('light-mode'); themeIcon.setAttribute('data-lucide', 'sun'); lucide.createIcons(); }
 
         // Typing Effect
         const roles = ["Technical Trainer", "Placement Trainer", "Moodle Specialist", "Educator"];
@@ -553,30 +584,23 @@
             setTimeout(type, isDeleting ? 40 : 100);
         }
 
-        // Particle System
-        const canvas = document.getElementById('particle-canvas');
-        const ctx = canvas.getContext('2d');
-        const hero = document.getElementById('hero');
+        // REVERTED: Particle System Speed and Movement
+        const canvas = document.getElementById('particle-canvas'), ctx = canvas.getContext('2d'), hero = document.getElementById('hero');
         let stars = [];
-
         function resize() {
-            canvas.width = hero.offsetWidth;
-            canvas.height = hero.offsetHeight;
-            stars = [];
+            canvas.width = hero.offsetWidth; canvas.height = hero.offsetHeight; stars = [];
             for (let i = 0; i < 60; i++) {
                 stars.push({
                     x: Math.random() * canvas.width,
                     y: Math.random() * canvas.height,
                     size: Math.random() * 2,
-                    vx: (Math.random() - 0.5) * 0.8,
-                    vy: (Math.random() - 0.5) * 0.8,
+                    vx: (Math.random() - 0.5) * 0.8, // Reverted to slower speed
+                    vy: (Math.random() - 0.5) * 0.8, // Reverted to slower speed
                     opacity: Math.random()
                 });
             }
         }
-        window.addEventListener('resize', resize);
-        resize();
-
+        window.addEventListener('resize', resize); resize();
         function animateSpace() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             const isLight = body.classList.contains('light-mode');
@@ -585,8 +609,8 @@
                 if (s.x < 0) s.x = canvas.width; if (s.x > canvas.width) s.x = 0;
                 if (s.y < 0) s.y = canvas.height; if (s.y > canvas.height) s.y = 0;
                 ctx.beginPath();
-                // Fixed Alpha for visibility in both modes
-                ctx.fillStyle = isLight ? `rgba(37, 99, 235, ${s.opacity * 0.4})` : `rgba(255, 255, 255, ${s.opacity * 0.6})`;
+                // Visible alpha settings
+                ctx.fillStyle = isLight ? `rgba(37, 99, 235, ${0.4 + s.opacity * 0.4})` : `rgba(255, 255, 255, ${0.5 + s.opacity * 0.4})`;
                 ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
                 ctx.fill();
             });
@@ -606,7 +630,7 @@
         const menuBtn = document.getElementById('menu-btn'), closeBtn = document.getElementById('close-menu'), menu = document.getElementById('mobile-menu');
         menuBtn.onclick = () => menu.classList.remove('translate-x-full');
         closeBtn.onclick = () => menu.classList.add('translate-x-full');
-        document.querySelectorAll('.menu-link').forEach(l => l.onclick = () => menu.classList.remove('open'));
+        document.querySelectorAll('.menu-link').forEach(l => l.onclick = () => menu.classList.remove('translate-x-full'));
 
         type(); animateSpace();
     </script>
