@@ -67,16 +67,17 @@
             transform: translateY(-2px);
         }
 
-        /* FIXED: Navbar and Mobile Menu Link Hover Color Change with Gradient and Zoom */
+        /* FIXED: Navbar Link Hover with Gradient and Zoom */
         .nav-link, .menu-link {
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             display: inline-block;
+            position: relative;
         }
         .nav-link:hover, .menu-link:hover {
             background: linear-gradient(to right, var(--accent-blue), #93c5fd);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            transform: scale(1.1);
+            transform: scale(1.15);
         }
 
         .handwriting-hero {
@@ -116,7 +117,7 @@
             display: flex; align-items: center; justify-content: center;
         }
 
-        /* Dual Rotating Borders around Portrait - Subtle Opacity */
+        /* Dual Rotating Borders around Portrait */
         .border-layer {
             position: absolute; border-radius: 50%;
             border: 2.5px solid transparent;
@@ -154,14 +155,24 @@
         .fade-in { opacity: 0; transform: translateY(20px); transition: all 0.8s ease-out; }
         .fade-in.visible { opacity: 1; transform: translateY(0); }
 
+        /* FIXED: Floating Label Logic */
         .floating-label { position: relative; margin-bottom: 1.5rem; }
         .floating-label input, .floating-label textarea {
             background: transparent; border: none;
             border-bottom: 1px solid var(--card-border); width: 100%;
             padding: 10px 0; color: var(--text-primary); outline: none; font-family: inherit;
         }
-        .floating-label label { position: absolute; top: 10px; left: 0; color: var(--text-secondary); transition: all 0.3s; pointer-events: none; }
-        .floating-label input:focus ~ label, .floating-label input:not(:placeholder-shown) ~ label { top: -15px; font-size: 12px; color: var(--accent-blue); }
+        .floating-label label { 
+            position: absolute; top: 10px; left: 0; 
+            color: var(--text-secondary); transition: all 0.3s ease; pointer-events: none; 
+        }
+        /* This ensures the label moves up even if there is just a placeholder space */
+        .floating-label input:focus ~ label, 
+        .floating-label input:not(:placeholder-shown) ~ label,
+        .floating-label textarea:focus ~ label, 
+        .floating-label textarea:not(:placeholder-shown) ~ label { 
+            top: -15px; font-size: 12px; color: var(--accent-blue); 
+        }
 
         .theme-toggle-btn {
             padding: 8px; border-radius: 50%;
@@ -169,11 +180,32 @@
             color: var(--text-primary); transition: all 0.3s ease;
             display: flex; align-items: center; justify-content: center;
         }
+
+        /* Success Message Modal */
+        #success-modal {
+            display: none;
+            position: fixed; inset: 0;
+            background: rgba(0,0,0,0.8);
+            z-index: 5000; align-items: center; justify-content: center;
+            backdrop-filter: blur(8px);
+        }
     </style>
 </head>
 <body class="selection:bg-blue-500 selection:text-white">
 
     <div id="scroll-progress"></div>
+
+    <!-- Success Modal -->
+    <div id="success-modal">
+        <div class="glass-card p-10 rounded-3xl text-center max-w-sm mx-6 border-blue-500/30">
+            <div class="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                <i data-lucide="check" class="text-green-500 w-8 h-8"></i>
+            </div>
+            <h3 class="text-2xl font-bold mb-2">Thank You!</h3>
+            <p class="text-secondary opacity-70 mb-8">Message sent successfully. I'll get back to you soon.</p>
+            <button onclick="closeModal()" class="w-full py-3 rounded-xl font-bold bg-blue-600 text-white hover:bg-blue-700 transition-all">Close</button>
+        </div>
+    </div>
 
     <header class="fixed top-0 w-full z-[1000] border-b border-white/5 backdrop-blur-md" style="background-color: var(--nav-bg);">
         <nav class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between navbar-font">
@@ -341,8 +373,8 @@
             </div>
         </section>
 
-        <!-- Technical Skillset RESTORED AS PER YOUR PREVIOUS CODE -->
-        <section id="skills" class="py-12 md:py-16 bg-black border-t border-white/5">
+        <!-- FIXED: Technical Skillset with Dynamic Theme Support -->
+        <section id="skills" class="py-12 md:py-16 border-t" style="background-color: var(--bg-charcoal); border-color: var(--card-border);">
             <div class="container mx-auto px-6 max-w-6xl">
                 <div class="fade-in mb-8 text-center">
                     <h2 class="text-sm font-bold uppercase tracking-[0.3em] text-blue-500 mb-4 mono">Technical Skillset</h2>
@@ -351,48 +383,48 @@
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-6xl mx-auto">
                     <div class="glass-card p-4 rounded-2xl flex items-center gap-4 group hover:scale-[1.02] transition-all">
-                        <div class="shrink-0 w-12 h-12 bg-white/10 border border-white/10 rounded-xl flex items-center justify-center group-hover:bg-white group-hover:text-black transition-colors duration-500">
+                        <div class="shrink-0 w-12 h-12 bg-white/10 border border-white/10 rounded-xl flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-colors duration-500">
                             <i data-lucide="code-2" class="w-6 h-6"></i>
                         </div>
                         <div>
-                            <h5 class="text-white font-bold text-base leading-tight mb-0.5">Programming</h5>
-                            <p class="text-zinc-400 text-xs font-light">C, Java, Python, C++, LaTeX</p>
+                            <h5 class="font-bold text-base leading-tight mb-0.5">Programming</h5>
+                            <p class="text-secondary opacity-70 text-xs font-light">C, Java, Python, C++, LaTeX</p>
                         </div>
                     </div>
                     <div class="glass-card p-4 rounded-2xl flex items-center gap-4 group hover:scale-[1.02] transition-all">
-                        <div class="shrink-0 w-12 h-12 bg-white/10 border border-white/10 rounded-xl flex items-center justify-center group-hover:bg-white group-hover:text-black transition-colors duration-500">
+                        <div class="shrink-0 w-12 h-12 bg-white/10 border border-white/10 rounded-xl flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-colors duration-500">
                             <i data-lucide="monitor" class="w-6 h-6"></i>
                         </div>
                         <div>
-                            <h5 class="text-white font-bold text-base leading-tight mb-0.5">IDE</h5>
-                            <p class="text-zinc-400 text-xs font-light">VS Code, Eclipse, Jupyter, Anaconda</p>
+                            <h5 class="font-bold text-base leading-tight mb-0.5">IDE</h5>
+                            <p class="text-secondary opacity-70 text-xs font-light">VS Code, Eclipse, Jupyter, Anaconda</p>
                         </div>
                     </div>
                     <div class="glass-card p-4 rounded-2xl flex items-center gap-4 group hover:scale-[1.02] transition-all">
-                        <div class="shrink-0 w-12 h-12 bg-white/10 border border-white/10 rounded-xl flex items-center justify-center group-hover:bg-white group-hover:text-black transition-colors duration-500">
+                        <div class="shrink-0 w-12 h-12 bg-white/10 border border-white/10 rounded-xl flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-colors duration-500">
                             <i data-lucide="database" class="w-6 h-6"></i>
                         </div>
                         <div>
-                            <h5 class="text-white font-bold text-base leading-tight mb-0.5">Backend</h5>
-                            <p class="text-zinc-400 text-xs font-light">MySQL, MongoDB, Node.js, PHP</p>
+                            <h5 class="font-bold text-base leading-tight mb-0.5">Backend</h5>
+                            <p class="text-secondary opacity-70 text-xs font-light">MySQL, MongoDB, Node.js, PHP</p>
                         </div>
                     </div>
                     <div class="glass-card p-4 rounded-2xl flex items-center gap-4 group hover:scale-[1.02] transition-all">
-                        <div class="shrink-0 w-12 h-12 bg-white/10 border border-white/10 rounded-xl flex items-center justify-center group-hover:bg-white group-hover:text-black transition-colors duration-500">
+                        <div class="shrink-0 w-12 h-12 bg-white/10 border border-white/10 rounded-xl flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-colors duration-500">
                             <i data-lucide="globe" class="w-6 h-6"></i>
                         </div>
                         <div>
-                            <h5 class="text-white font-bold text-base leading-tight mb-0.5">Frontend</h5>
-                            <p class="text-zinc-400 text-xs font-light">HTML5, CSS, JavaScript, React</p>
+                            <h5 class="font-bold text-base leading-tight mb-0.5">Frontend</h5>
+                            <p class="text-secondary opacity-70 text-xs font-light">HTML5, CSS, JavaScript, React</p>
                         </div>
                     </div>
                     <div class="glass-card p-4 rounded-2xl flex items-center gap-4 group hover:scale-[1.02] transition-all md:col-span-2 lg:col-span-1">
-                        <div class="shrink-0 w-12 h-12 bg-white/10 border border-white/10 rounded-xl flex items-center justify-center group-hover:bg-white group-hover:text-black transition-colors duration-500">
+                        <div class="shrink-0 w-12 h-12 bg-white/10 border border-white/10 rounded-xl flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-colors duration-500">
                             <i data-lucide="award" class="w-6 h-6"></i>
                         </div>
                         <div>
-                            <h5 class="text-white font-bold text-base leading-tight mb-0.5">Coding Platforms</h5>
-                            <p class="text-zinc-400 text-xs font-light">Moodle, Examly, Codechef, Leetcode, GFG</p>
+                            <h5 class="font-bold text-base leading-tight mb-0.5">Coding Platforms</h5>
+                            <p class="text-secondary opacity-70 text-xs font-light">Moodle, Examly, Codechef, Leetcode, GFG</p>
                         </div>
                     </div>
                 </div>
@@ -537,13 +569,13 @@
                             <i data-lucide="shield-check" class="w-6 h-6 text-blue-400"></i>
                             <h5 class="text-xl font-bold">Infosys FDP Certified (A+)</h5>
                         </div>
-                        <p class="text-sm font-light opacity-70 leading-relaxed">Faculty Development certification from Infosys with an outstanding **A+ Grade** recognition point.</p>
+                        <p class="text-sm font-light opacity-70 leading-relaxed">Faculty Development certification from Infosys with an A+ Grade recognition.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Connect Section -->
+        <!-- FIXED: Contact Form with Working Email Service & Label Logic -->
         <section id="contact" class="py-24 border-t" style="background-color: var(--bg-charcoal); border-color: var(--card-border);">
             <div class="container-standard text-center max-w-2xl">
                 <div class="fade-in mb-8">
@@ -551,11 +583,20 @@
                     <p class="text-base font-light opacity-70 mx-auto max-w-md">Interested in training programs or workshops? Let's Talk.</p>
                 </div>
                 <div class="glass-card p-8 md:p-12 rounded-[2.5rem] mt-10 text-left">
-                    <form id="contact-form" class="space-y-6">
-                        <div class="floating-label"><input type="text" id="name" placeholder=" " required><label>Your Name</label></div>
-                        <div class="floating-label"><input type="email" id="email" placeholder=" " required><label>Your Email</label></div>
-                        <div class="floating-label"><textarea id="message" rows="3" placeholder=" " required></textarea><label>Message</label></div>
-                        <button type="submit" class="w-full py-4 rounded-xl font-bold transition-all shadow-lg text-sm uppercase tracking-widest" style="background-color: var(--text-primary); color: var(--bg-deep);">Send Message</button>
+                    <form id="contact-form" action="https://formspree.io/f/arunkongi@gmail.com" method="POST" class="space-y-6">
+                        <div class="floating-label">
+                            <input type="text" name="name" id="name" placeholder=" " required>
+                            <label>Your Name</label>
+                        </div>
+                        <div class="floating-label">
+                            <input type="email" name="email" id="email" placeholder=" " required>
+                            <label>Your Email</label>
+                        </div>
+                        <div class="floating-label">
+                            <textarea name="message" id="message" rows="3" placeholder=" " required></textarea>
+                            <label>Message</label>
+                        </div>
+                        <button type="submit" id="send-btn" class="w-full py-4 rounded-xl font-bold transition-all shadow-lg text-sm uppercase tracking-widest bg-white text-black hover:bg-blue-600 hover:text-white dark:bg-white dark:text-black">Send Message</button>
                     </form>
                 </div>
             </div>
@@ -569,11 +610,8 @@
     <script>
         lucide.createIcons();
 
-        // Theme Toggle
-        const themeBtn = document.getElementById('theme-toggle');
-        const themeIcon = document.getElementById('theme-icon');
-        const body = document.body;
-
+        // Theme Toggle Logic
+        const themeBtn = document.getElementById('theme-toggle'), themeIcon = document.getElementById('theme-icon'), body = document.body;
         themeBtn.addEventListener('click', () => {
             body.classList.toggle('light-mode');
             const isLight = body.classList.contains('light-mode');
@@ -581,12 +619,7 @@
             lucide.createIcons();
             localStorage.setItem('theme', isLight ? 'light' : 'dark');
         });
-
-        if (localStorage.getItem('theme') === 'light') {
-            body.classList.add('light-mode');
-            themeIcon.setAttribute('data-lucide', 'sun');
-            lucide.createIcons();
-        }
+        if (localStorage.getItem('theme') === 'light') { body.classList.add('light-mode'); themeIcon.setAttribute('data-lucide', 'sun'); lucide.createIcons(); }
 
         // Typing Effect
         const roles = ["Technical Trainer", "Placement Trainer", "Moodle Specialist", "Educator"];
@@ -604,30 +637,19 @@
             setTimeout(type, isDeleting ? 40 : 100);
         }
 
-        // Particle System with Subtle Opacity
-        const canvas = document.getElementById('particle-canvas');
-        const ctx = canvas.getContext('2d');
-        const hero = document.getElementById('hero');
+        // Subtle Particle System
+        const canvas = document.getElementById('particle-canvas'), ctx = canvas.getContext('2d'), hero = document.getElementById('hero');
         let stars = [];
-
         function resize() {
-            canvas.width = hero.offsetWidth;
-            canvas.height = hero.offsetHeight;
-            stars = [];
+            canvas.width = hero.offsetWidth; canvas.height = hero.offsetHeight; stars = [];
             for (let i = 0; i < 60; i++) {
                 stars.push({
-                    x: Math.random() * canvas.width,
-                    y: Math.random() * canvas.height,
-                    size: Math.random() * 2,
-                    vx: (Math.random() - 0.5) * 0.8,
-                    vy: (Math.random() - 0.5) * 0.8,
-                    opacity: Math.random()
+                    x: Math.random() * canvas.width, y: Math.random() * canvas.height, size: Math.random() * 2,
+                    vx: (Math.random() - 0.5) * 0.8, vy: (Math.random() - 0.5) * 0.8, opacity: Math.random()
                 });
             }
         }
-        window.addEventListener('resize', resize);
-        resize();
-
+        window.addEventListener('resize', resize); resize();
         function animateSpace() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             const isLight = body.classList.contains('light-mode');
@@ -636,22 +658,12 @@
                 if (s.x < 0) s.x = canvas.width; if (s.x > canvas.width) s.x = 0;
                 if (s.y < 0) s.y = canvas.height; if (s.y > canvas.height) s.y = 0;
                 ctx.beginPath();
-                ctx.fillStyle = isLight ? `rgba(37, 99, 235, ${0.1 + s.opacity * 0.2})` : `rgba(255, 255, 255, ${0.15 + s.opacity * 0.25})`;
+                ctx.fillStyle = isLight ? `rgba(37, 99, 235, ${0.05 + s.opacity * 0.1})` : `rgba(255, 255, 255, ${0.1 + s.opacity * 0.15})`;
                 ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
                 ctx.fill();
             });
             requestAnimationFrame(animateSpace);
         }
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.fade-in').forEach(e => observer.observe(e));
-
-        window.addEventListener('scroll', () => {
-            const bar = document.getElementById('scroll-progress');
-            bar.style.width = ((window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100) + '%';
-        });
 
         // FIXED: Mobile Menu Action Logic
         const menuBtn = document.getElementById('menu-btn');
@@ -667,18 +679,55 @@
             mobileMenu.classList.add('translate-x-full');
         });
 
-        // Close menu when a link is clicked
-        document.querySelectorAll('.menu-link').forEach(link => {portr
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('translate-x-full');
-            });
+        document.querySelectorAll('.menu-link').forEach(link => {
+            link.addEventListener('click', () => mobileMenu.classList.add('translate-x-full'));
         });
 
-        // Close menu if clicked outside
-        document.addEventListener('click', (e) => {
-            if (!mobileMenu.contains(e.target) && !menuBtn.contains(e.target)) {
-                mobileMenu.classList.add('translate-x-full');
+        // FIXED: Form Submission & Email Service
+        const contactForm = document.getElementById('contact-form');
+        const successModal = document.getElementById('success-modal');
+
+        contactForm.onsubmit = async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('send-btn');
+            btn.textContent = "Sending...";
+            btn.disabled = true;
+
+            const formData = new FormData(contactForm);
+            
+            try {
+                const response = await fetch(contactForm.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: { 'Accept': 'application/json' }
+                });
+
+                if (response.ok) {
+                    successModal.style.display = 'flex';
+                    contactForm.reset();
+                } else {
+                    alert("Submission failed. Please try again later.");
+                }
+            } catch (error) {
+                alert("Error sending message. Check your connection.");
+            } finally {
+                btn.textContent = "Send Message";
+                btn.disabled = false;
             }
+        };
+
+        function closeModal() {
+            successModal.style.display = 'none';
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.fade-in').forEach(e => observer.observe(e));
+
+        window.addEventListener('scroll', () => {
+            const bar = document.getElementById('scroll-progress');
+            bar.style.width = ((window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100) + '%';
         });
 
         type(); animateSpace();
