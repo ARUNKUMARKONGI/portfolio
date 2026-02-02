@@ -67,7 +67,7 @@
             transform: translateY(-2px);
         }
 
-        /* FIXED: Navbar Link Hover with Gradient and Zoom */
+        /* Navbar Link Hover with Gradient and Zoom */
         .nav-link, .menu-link {
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             display: inline-block;
@@ -166,7 +166,6 @@
             position: absolute; top: 10px; left: 0; 
             color: var(--text-secondary); transition: all 0.3s ease; pointer-events: none; 
         }
-        /* This ensures the label moves up even if there is just a placeholder space */
         .floating-label input:focus ~ label, 
         .floating-label input:not(:placeholder-shown) ~ label,
         .floating-label textarea:focus ~ label, 
@@ -373,7 +372,7 @@
             </div>
         </section>
 
-        <!-- FIXED: Technical Skillset with Dynamic Theme Support -->
+        <!-- Technical Skillset Stacks and Tools -->
         <section id="skills" class="py-12 md:py-16 border-t" style="background-color: var(--bg-charcoal); border-color: var(--card-border);">
             <div class="container mx-auto px-6 max-w-6xl">
                 <div class="fade-in mb-8 text-center">
@@ -383,7 +382,7 @@
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-6xl mx-auto">
                     <div class="glass-card p-4 rounded-2xl flex items-center gap-4 group hover:scale-[1.02] transition-all">
-                        <div class="shrink-0 w-12 h-12 bg-white/10 border border-white/10 rounded-xl flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-colors duration-500">
+                        <div class="shrink-0 w-12 h-12 bg-white/10 border border-white/10 rounded-xl flex items-center justify-center group-hover:bg-white group-hover:text-black transition-colors duration-500">
                             <i data-lucide="code-2" class="w-6 h-6"></i>
                         </div>
                         <div>
@@ -392,7 +391,7 @@
                         </div>
                     </div>
                     <div class="glass-card p-4 rounded-2xl flex items-center gap-4 group hover:scale-[1.02] transition-all">
-                        <div class="shrink-0 w-12 h-12 bg-white/10 border border-white/10 rounded-xl flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-colors duration-500">
+                        <div class="shrink-0 w-12 h-12 bg-white/10 border border-white/10 rounded-xl flex items-center justify-center group-hover:bg-white group-hover:text-black transition-colors duration-500">
                             <i data-lucide="monitor" class="w-6 h-6"></i>
                         </div>
                         <div>
@@ -401,7 +400,7 @@
                         </div>
                     </div>
                     <div class="glass-card p-4 rounded-2xl flex items-center gap-4 group hover:scale-[1.02] transition-all">
-                        <div class="shrink-0 w-12 h-12 bg-white/10 border border-white/10 rounded-xl flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-colors duration-500">
+                        <div class="shrink-0 w-12 h-12 bg-white/10 border border-white/10 rounded-xl flex items-center justify-center group-hover:bg-white group-hover:text-black transition-colors duration-500">
                             <i data-lucide="database" class="w-6 h-6"></i>
                         </div>
                         <div>
@@ -410,7 +409,7 @@
                         </div>
                     </div>
                     <div class="glass-card p-4 rounded-2xl flex items-center gap-4 group hover:scale-[1.02] transition-all">
-                        <div class="shrink-0 w-12 h-12 bg-white/10 border border-white/10 rounded-xl flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-colors duration-500">
+                        <div class="shrink-0 w-12 h-12 bg-white/10 border border-white/10 rounded-xl flex items-center justify-center group-hover:bg-white group-hover:text-black transition-colors duration-500">
                             <i data-lucide="globe" class="w-6 h-6"></i>
                         </div>
                         <div>
@@ -419,7 +418,7 @@
                         </div>
                     </div>
                     <div class="glass-card p-4 rounded-2xl flex items-center gap-4 group hover:scale-[1.02] transition-all md:col-span-2 lg:col-span-1">
-                        <div class="shrink-0 w-12 h-12 bg-white/10 border border-white/10 rounded-xl flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-colors duration-500">
+                        <div class="shrink-0 w-12 h-12 bg-white/10 border border-white/10 rounded-xl flex items-center justify-center group-hover:bg-white group-hover:text-black transition-colors duration-500">
                             <i data-lucide="award" class="w-6 h-6"></i>
                         </div>
                         <div>
@@ -569,7 +568,7 @@
                             <i data-lucide="shield-check" class="w-6 h-6 text-blue-400"></i>
                             <h5 class="text-xl font-bold">Infosys FDP Certified (A+)</h5>
                         </div>
-                        <p class="text-sm font-light opacity-70 leading-relaxed">Faculty Development certification from Infosys with an A+ Grade recognition.</p>
+                        <p class="text-sm font-light opacity-70 leading-relaxed">Faculty Development certification from Infosys with an outstanding **A+ Grade** recognition point.</p>
                     </div>
                 </div>
             </div>
@@ -583,7 +582,7 @@
                     <p class="text-base font-light opacity-70 mx-auto max-w-md">Interested in training programs or workshops? Let's Talk.</p>
                 </div>
                 <div class="glass-card p-8 md:p-12 rounded-[2.5rem] mt-10 text-left">
-                    <form id="contact-form" action="https://formspree.io/f/arunkongi@gmail.com" method="POST" class="space-y-6">
+                    <form id="contact-form" action="https://formspree.io/arunkongi@gmail.com" method="POST" class="space-y-6">
                         <div class="floating-label">
                             <input type="text" name="name" id="name" placeholder=" " required>
                             <label>Your Name</label>
@@ -665,7 +664,7 @@
             requestAnimationFrame(animateSpace);
         }
 
-        // FIXED: Mobile Menu Action Logic
+        // Mobile Menu Logic
         const menuBtn = document.getElementById('menu-btn');
         const closeBtn = document.getElementById('close-menu');
         const mobileMenu = document.getElementById('mobile-menu');
@@ -683,13 +682,14 @@
             link.addEventListener('click', () => mobileMenu.classList.add('translate-x-full'));
         });
 
-        // FIXED: Form Submission & Email Service
+        // Form Submission Logic
         const contactForm = document.getElementById('contact-form');
         const successModal = document.getElementById('success-modal');
 
         contactForm.onsubmit = async (e) => {
             e.preventDefault();
             const btn = document.getElementById('send-btn');
+            const originalText = btn.textContent;
             btn.textContent = "Sending...";
             btn.disabled = true;
 
@@ -706,12 +706,14 @@
                     successModal.style.display = 'flex';
                     contactForm.reset();
                 } else {
-                    alert("Submission failed. Please try again later.");
+                    // Fallback to standard submit if fetch fails (common on some browsers)
+                    contactForm.submit();
                 }
             } catch (error) {
-                alert("Error sending message. Check your connection.");
+                // If there's a network error, try standard submission
+                contactForm.submit();
             } finally {
-                btn.textContent = "Send Message";
+                btn.textContent = originalText;
                 btn.disabled = false;
             }
         };
