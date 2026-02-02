@@ -67,21 +67,19 @@
             transform: translateY(-2px);
         }
 
+        /* Navbar Menu Hover Color Change */
+        .nav-link {
+            transition: color 0.3s ease;
+        }
+        .nav-link:hover {
+            color: var(--accent-blue) !important;
+        }
+
         .handwriting-hero {
             background: none !important;
             -webkit-text-fill-color: var(--text-primary) !important;
             font-family: 'Dancing Script', cursive;
             display: inline-block;
-        }
-
-        .rustic-heading {
-            font-family: 'Dancing Script', cursive;
-            background: linear-gradient(to right, var(--text-primary) 20%, var(--text-secondary) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            display: inline-block;
-            font-weight: 700;
         }
 
         .navbar-font { font-family: 'Josefin Sans', sans-serif; font-weight: 600; letter-spacing: 0.05em; }
@@ -104,7 +102,7 @@
             display: flex; align-items: center; justify-content: center;
         }
 
-        /* Dual Rotating Borders around Portrait */
+        /* Dual Rotating Borders around Portrait - OPACITY REDUCED */
         .border-layer {
             position: absolute; border-radius: 50%;
             border: 2.5px solid transparent;
@@ -114,7 +112,7 @@
         .layer-1 {
             width: calc(100% + 30px); height: calc(100% + 30px);
             border-top-color: var(--accent-blue);
-            animation-duration: 10s; opacity: 0.8;
+            animation-duration: 10s; opacity: 0.3; /* Reduced */
         }
 
         .layer-2 {
@@ -122,7 +120,7 @@
             border-bottom-color: var(--accent-amber);
             animation-duration: 15s; 
             animation-direction: reverse;
-            opacity: 0.6;
+            opacity: 0.2; /* Reduced */
         }
 
         @keyframes rotate-border { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
@@ -169,12 +167,12 @@
             
             <div class="flex items-center gap-6">
                 <ul class="hidden lg:flex space-x-8 text-[11px] uppercase tracking-widest font-semibold" style="color: var(--text-secondary);">
-                    <li><a href="#journey" class="hover:text-current transition-colors">Journey</a></li>
-                    <li><a href="#skills" class="hover:text-current transition-colors">Skills</a></li>
-                    <li><a href="#activities" class="hover:text-current transition-colors">Academic</a></li>
-                    <li><a href="#education" class="hover:text-current transition-colors">Education</a></li>
-                    <li><a href="#achievements" class="hover:text-current transition-colors">Achievements</a></li>
-                    <li><a href="#contact" class="hover:text-current transition-colors">Connect</a></li>
+                    <li><a href="#journey" class="nav-link">Journey</a></li>
+                    <li><a href="#skills" class="nav-link">Skills</a></li>
+                    <li><a href="#activities" class="nav-link">Academic</a></li>
+                    <li><a href="#education" class="nav-link">Education</a></li>
+                    <li><a href="#achievements" class="nav-link">Achievements</a></li>
+                    <li><a href="#contact" class="nav-link">Connect</a></li>
                 </ul>
 
                 <button id="theme-toggle" class="theme-toggle-btn" title="Toggle Theme">
@@ -294,13 +292,12 @@
                                 <li class="flex items-start gap-3"><span>•</span><span>Prepared lab courses for Information Security, Advanced Java, ASP.NET, and ML.</span></li>
                             </ul>
                             <ul class="space-y-3">
-                                <li class="flex items-start gap-3"><span>•</span><span>Awarded Best Performer by Honorable VC for academic excellence.</span></li>
-                                <li class="flex items-start gap-3"><span>•</span><span>Developed Central Library Website and served as Curriculum Committee Member.</span></li>
+                                <li class="flex items-start gap-3"><span>•</span><span>Awarded Best Performer by Honorable VC for academic excellence at CUK.</span></li>
+                                <li class="flex items-start gap-3"><span>•</span><span>Assisted in Developing Central Library Website and served as Curriculum Committee Member.</span></li>
                             </ul>
                         </div>
                     </div>
 
-                    <!-- AMCEC Experience Restored -->
                     <div class="glass-card p-8 md:p-10 rounded-3xl fade-in relative">
                         <div class="absolute -top-6 left-8 w-12 h-12 rounded-xl flex items-center justify-center shadow-xl border" style="background-color: var(--bg-charcoal); border-color: var(--card-border);">
                             <i data-lucide="briefcase" class="w-6 h-6" style="color: var(--text-secondary);"></i>
@@ -330,7 +327,7 @@
             </div>
         </section>
 
-        <!-- Technical Skillset Stacks and Tools -->
+        <!-- Technical Skillset RESTORED AS PER YOUR PREVIOUS CODE -->
         <section id="skills" class="py-12 md:py-16 bg-black border-t border-white/5">
             <div class="container mx-auto px-6 max-w-6xl">
                 <div class="fade-in mb-8 text-center">
@@ -388,7 +385,7 @@
             </div>
         </section>
 
-        <!-- Academic Subjects -->
+        <!-- Academic Content -->
         <section id="activities" class="py-20 border-t" style="border-color: var(--card-border);">
             <div class="container-standard">
                 <div class="grid lg:grid-cols-2 gap-16">
@@ -625,7 +622,6 @@
                 if (s.x < 0) s.x = canvas.width; if (s.x > canvas.width) s.x = 0;
                 if (s.y < 0) s.y = canvas.height; if (s.y > canvas.height) s.y = 0;
                 ctx.beginPath();
-                // Reduced particle opacity for a subtle look
                 ctx.fillStyle = isLight ? `rgba(37, 99, 235, ${0.1 + s.opacity * 0.2})` : `rgba(255, 255, 255, ${0.15 + s.opacity * 0.25})`;
                 ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
                 ctx.fill();
@@ -643,10 +639,33 @@
             bar.style.width = ((window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100) + '%';
         });
 
-        const menuBtn = document.getElementById('menu-btn'), closeBtn = document.getElementById('close-menu'), menu = document.getElementById('mobile-menu');
-        menuBtn.onclick = () => menu.classList.remove('translate-x-full');
-        closeBtn.onclick = () => menu.classList.add('translate-x-full');
-        document.querySelectorAll('.menu-link').forEach(l => l.onclick = () => menu.classList.remove('translate-x-full'));
+        // FIXED: Mobile Menu Action Logic
+        const menuBtn = document.getElementById('menu-btn');
+        const closeBtn = document.getElementById('close-menu');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            mobileMenu.classList.remove('translate-x-full');
+        });
+
+        closeBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('translate-x-full');
+        });
+
+        // Close menu when a link is clicked
+        document.querySelectorAll('.menu-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('translate-x-full');
+            });
+        });
+
+        // Close menu if clicked outside
+        document.addEventListener('click', (e) => {
+            if (!mobileMenu.contains(e.target) && !menuBtn.contains(e.target)) {
+                mobileMenu.classList.add('translate-x-full');
+            }
+        });
 
         type(); animateSpace();
     </script>
