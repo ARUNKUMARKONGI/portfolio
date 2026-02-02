@@ -67,12 +67,16 @@
             transform: translateY(-2px);
         }
 
-        /* Navbar Menu Hover Color Change */
-        .nav-link {
-            transition: color 0.3s ease;
+        /* FIXED: Navbar and Mobile Menu Link Hover Color Change with Gradient and Zoom */
+        .nav-link, .menu-link {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: inline-block;
         }
-        .nav-link:hover {
-            color: var(--accent-blue) !important;
+        .nav-link:hover, .menu-link:hover {
+            background: linear-gradient(to right, var(--accent-blue), #93c5fd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            transform: scale(1.1);
         }
 
         .handwriting-hero {
@@ -80,6 +84,16 @@
             -webkit-text-fill-color: var(--text-primary) !important;
             font-family: 'Dancing Script', cursive;
             display: inline-block;
+        }
+
+        .rustic-heading {
+            font-family: 'Dancing Script', cursive;
+            background: linear-gradient(to right, var(--text-primary) 20%, var(--text-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: inline-block;
+            font-weight: 700;
         }
 
         .navbar-font { font-family: 'Josefin Sans', sans-serif; font-weight: 600; letter-spacing: 0.05em; }
@@ -102,7 +116,7 @@
             display: flex; align-items: center; justify-content: center;
         }
 
-        /* Dual Rotating Borders around Portrait - OPACITY REDUCED */
+        /* Dual Rotating Borders around Portrait - Subtle Opacity */
         .border-layer {
             position: absolute; border-radius: 50%;
             border: 2.5px solid transparent;
@@ -112,7 +126,7 @@
         .layer-1 {
             width: calc(100% + 30px); height: calc(100% + 30px);
             border-top-color: var(--accent-blue);
-            animation-duration: 10s; opacity: 0.3; /* Reduced */
+            animation-duration: 10s; opacity: 0.3;
         }
 
         .layer-2 {
@@ -120,7 +134,7 @@
             border-bottom-color: var(--accent-amber);
             animation-duration: 15s; 
             animation-direction: reverse;
-            opacity: 0.2; /* Reduced */
+            opacity: 0.2;
         }
 
         @keyframes rotate-border { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
@@ -293,7 +307,7 @@
                             </ul>
                             <ul class="space-y-3">
                                 <li class="flex items-start gap-3"><span>•</span><span>Awarded Best Performer by Honorable VC for academic excellence at CUK.</span></li>
-                                <li class="flex items-start gap-3"><span>•</span><span>Assisted in Developing Central Library Website and served as Curriculum Committee Member.</span></li>
+                                <li class="flex items-start gap-3"><span>•</span><span>Developed Central Library Website and served as Curriculum Committee Member.</span></li>
                             </ul>
                         </div>
                     </div>
@@ -435,7 +449,7 @@
             </div>
         </section>
 
-        <!-- Education -->
+        <!-- Academic Qualifications -->
         <section id="education" class="py-20 border-t" style="background-color: var(--bg-charcoal); border-color: var(--card-border);">
             <div class="container-standard">
                 <div class="fade-in mb-12 text-center">
@@ -654,7 +668,7 @@
         });
 
         // Close menu when a link is clicked
-        document.querySelectorAll('.menu-link').forEach(link => {
+        document.querySelectorAll('.menu-link').forEach(link => {portr
             link.addEventListener('click', () => {
                 mobileMenu.classList.add('translate-x-full');
             });
