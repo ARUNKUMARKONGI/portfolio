@@ -48,23 +48,19 @@
             padding: 0 1.5rem;
         }
 
-        /* Gradient effect applied only on the right side of the text */
+        /* Standard Headings: Solid color */
         h1, h2, h3, h4, h5 { 
             font-family: 'Josefin Sans', sans-serif;
-            background: linear-gradient(to right, var(--text-primary) 65%, var(--accent-blue) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            display: inline-block;
+            color: var(--text-primary);
             font-weight: 700;
+            display: inline-block;
         }
-        
-        h1:hover, h2:hover, h3:hover, h4:hover, h5:hover {
-            background: linear-gradient(to right, var(--text-primary) 40%, var(--accent-blue) 100%);
+
+        /* FIXED: Gradient effect applied only on specific main headings */
+        .main-gradient {
+            background: linear-gradient(to right, var(--text-primary) 45%, var(--accent-blue) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: brightness(1.2);
-            transform: translateY(-2px);
         }
 
         /* Navbar Link Hover with Gradient and Zoom */
@@ -180,6 +176,61 @@
             display: flex; align-items: center; justify-content: center;
         }
 
+        /* Connect Now Button Styling */
+        .connect-btn {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background-color: var(--text-primary) !important;
+            color: var(--bg-deep) !important;
+        }
+        body:not(.light-mode) .connect-btn:hover {
+            background-color: #000000 !important;
+            color: #ffffff !important;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        body:not(.light-mode) .connect-btn:hover span {
+            background: none !important;
+            -webkit-text-fill-color: #ffffff !important;
+        }
+        body.light-mode .connect-btn:hover span {
+            background: linear-gradient(to right, var(--accent-blue), #93c5fd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* FIXED: Resume Button Styling */
+        .resume-btn {
+            background-color: #000000 !important;
+            color: #ffffff !important;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .resume-btn span {
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        /* Dark Mode Hover: Turns White, text turns black */
+        body:not(.light-mode) .resume-btn:hover {
+            background-color: #ffffff !important;
+            color: #000000 !important;
+            transform: scale(1.05);
+            border-color: transparent;
+        }
+        /* Light Mode Hover: Stays/Turns Black, text shows gradient blue */
+        body.light-mode .resume-btn:hover {
+            background-color: #000000 !important;
+            transform: scale(1.05);
+            border-color: var(--accent-blue);
+        }
+        .resume-btn:hover span {
+            background: linear-gradient(to right, var(--accent-blue), #93c5fd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        body:not(.light-mode) .resume-btn:hover span {
+            background: none !important;
+            -webkit-text-fill-color: #000000 !important;
+        }
+
         /* Success Message Modal */
         #success-modal {
             display: none;
@@ -259,12 +310,13 @@
                         </p>
                     </div>
 
-                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-6">
-                        <a href="#contact" class="px-8 py-4 rounded-full font-bold transition-all flex items-center gap-2 text-sm shadow-xl hover:scale-105" style="background-color: var(--text-primary); color: var(--bg-deep);">
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-6 pt-6">
+                        <!-- Connect Now Button -->
+                        <a href="#contact" class="connect-btn px-8 py-4 rounded-full font-bold transition-all flex items-center gap-2 text-sm shadow-xl hover:scale-105">
                             <span>Connect Now</span><i data-lucide="arrow-up-right" class="w-4 h-4"></i>
                         </a>
-                        <!-- Download Resume Button: Links to resume.pdf in same folder -->
-                        <a href="resume.pdf" download="Arunkumar_Resume.pdf" class="px-8 py-4 rounded-full font-bold transition-all flex items-center gap-2 text-sm border border-white/20 hover:bg-white/10 hover:scale-105">
+                        <!-- Download Resume Button -->
+                        <a href="resume.pdf" download="Arunkumar_Resume.pdf" class="px-8 py-4 rounded-full font-bold transition-all flex items-center gap-2 text-sm shadow-xl resume-btn">
                             <i data-lucide="download" class="w-4 h-4"></i><span>Resume</span>
                         </a>
                         <div class="flex items-center space-x-2 ml-2">
@@ -290,8 +342,8 @@
         <section id="journey" class="py-20 relative border-t" style="background-color: var(--bg-charcoal); border-color: var(--card-border);">
             <div class="container-standard">
                 <div class="fade-in mb-16 text-center">
-                    <h2 class="text-sm font-bold uppercase tracking-[0.3em] text-blue-500 mb-4 mono">Professional Experience</h2>
-                    <h3 class="text-4xl md:text-5xl font-bold">Career Milestones</h3>
+                    <h2 class="text-sm font-bold uppercase tracking-[0.3em] text-blue-500 mb-4 mono main-gradient">Professional Experience</h2>
+                    <h3 class="text-4xl md:text-5xl font-bold main-gradient">Career Milestones</h3>
                 </div>
 
                 <div class="space-y-12">
@@ -376,12 +428,12 @@
             </div>
         </section>
 
-        <!-- Technical Skillset Stacks and Tools -->
-        <section id="skills" class="py-12 md:py-16 border-t" style="background-color: var(--bg-charcoal); border-color: var(--card-border);">
+        <!-- Technical Skillset Stacks and Tools - RE-INTEGRATED FROM PREVIOUS VERSION -->
+        <section id="skills" class="py-12 md:py-16 border-t" style="background-color: var(--bg-deep); border-color: var(--card-border);">
             <div class="container mx-auto px-6 max-w-6xl">
                 <div class="fade-in mb-8 text-center">
-                    <h2 class="text-sm font-bold uppercase tracking-[0.3em] text-blue-500 mb-4 mono">Technical Skillset</h2>
-                    <h3 class="text-3xl md:text-5xl font-bold">Stack & Tools</h3>
+                    <h2 class="text-sm font-bold uppercase tracking-[0.3em] text-blue-500 mb-4 mono main-gradient">Technical Skillset</h2>
+                    <h3 class="text-3xl md:text-5xl font-bold main-gradient">Stack & Tools</h3>
                 </div>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-6xl mx-auto">
@@ -439,7 +491,7 @@
             <div class="container-standard">
                 <div class="grid lg:grid-cols-2 gap-16">
                     <div class="fade-in">
-                        <h2 class="text-3xl font-bold mb-10">Academic Subjects Experience</h2>
+                        <h2 class="text-3xl font-bold mb-10 main-gradient">Academic Subjects Experience</h2>
                         <div class="space-y-6 text-lg">
                             <div class="border-l-2 pl-6" style="border-color: var(--accent-blue);">
                                 <p class="text-sm mono opacity-50 mb-1">2021-22</p>
@@ -460,7 +512,7 @@
                         </div>
                     </div>
                     <div class="fade-in">
-                        <h2 class="text-3xl font-bold mb-10">Academic Activities</h2>
+                        <h2 class="text-3xl font-bold mb-10 main-gradient">Academic Activities</h2>
                         <div class="grid gap-4">
                             <div class="glass-card p-5 rounded-2xl flex justify-between items-center">
                                 <span class="font-medium">MOODLE Coordinator</span>
@@ -484,12 +536,12 @@
             </div>
         </section>
 
-        <!-- Academic Qualifications -->
+        <!-- Education -->
         <section id="education" class="py-20 border-t" style="background-color: var(--bg-charcoal); border-color: var(--card-border);">
             <div class="container-standard">
                 <div class="fade-in mb-12 text-center">
-                    <h2 class="text-sm font-bold uppercase tracking-[0.3em] mb-4 mono" style="color: var(--accent-blue);">Education</h2>
-                    <h3 class="text-2xl md:text-4xl font-bold">Academic Qualifications</h3>
+                    <h2 class="text-sm font-bold uppercase tracking-[0.3em] mb-4 mono main-gradient" style="color: var(--accent-blue);">Education</h2>
+                    <h3 class="text-2xl md:text-4xl font-bold main-gradient">Academic Qualifications</h3>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <div class="glass-card p-8 rounded-3xl fade-in text-left">
@@ -535,8 +587,8 @@
         <section id="achievements" class="py-20 border-t" style="border-color: var(--card-border);">
             <div class="container-standard">
                 <div class="fade-in mb-16 text-center">
-                    <h2 class="text-sm font-bold uppercase tracking-[0.3em] mb-4 mono" style="color: var(--accent-blue);">Achievements</h2>
-                    <h3 class="text-4xl md:text-5xl font-bold">Recognitions</h3>
+                    <h2 class="text-sm font-bold uppercase tracking-[0.3em] mb-4 mono main-gradient" style="color: var(--accent-blue);">Achievements</h2>
+                    <h3 class="text-4xl md:text-5xl font-bold main-gradient">Recognitions</h3>
                 </div>
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <div class="glass-card p-8 rounded-[2rem] fade-in">
@@ -582,7 +634,7 @@
         <section id="contact" class="py-24 border-t" style="background-color: var(--bg-charcoal); border-color: var(--card-border);">
             <div class="container-standard text-center max-w-2xl">
                 <div class="fade-in mb-8">
-                    <h2 class="text-6xl rustic-heading mb-6">Get in Touch</h2>
+                    <h2 class="text-6xl rustic-heading mb-6 main-gradient">Get in Touch</h2>
                     <p class="text-base font-light opacity-70 mx-auto max-w-md">Interested in training programs or workshops? Let's Talk.</p>
                 </div>
                 <div class="glass-card p-8 md:p-12 rounded-[2.5rem] mt-10 text-left">
