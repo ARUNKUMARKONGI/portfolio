@@ -197,7 +197,7 @@
             -webkit-text-fill-color: transparent;
         }
 
-        /* FIXED: Resume Button Styling */
+        /* Resume Button Styling */
         .resume-btn {
             background-color: #000000 !important;
             color: #ffffff !important;
@@ -301,7 +301,8 @@
                     
                     <div class="h-10 flex items-center justify-center lg:justify-start pt-1">
                         <span class="text-xl md:text-2xl font-medium mono mr-3" style="color: var(--text-secondary);">I'm</span>
-                        <p id="typing-target" class="text-xl md:text-2xl font-bold mono" style="color: var(--accent-blue); min-height: 1.5em;"></p>
+                        <!-- FIXED: Using span instead of p to maintain horizontal alignment -->
+                        <span id="typing-target" class="text-xl md:text-2xl font-bold mono" style="color: var(--accent-blue);"></span>
                     </div>
 
                     <div class="max-w-xl mx-auto lg:mx-0">
@@ -310,7 +311,7 @@
                         </p>
                     </div>
 
-                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-6 pt-6">
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-6">
                         <!-- Connect Now Button -->
                         <a href="#contact" class="connect-btn px-8 py-4 rounded-full font-bold transition-all flex items-center gap-2 text-sm shadow-xl hover:scale-105">
                             <span>Connect Now</span><i data-lucide="arrow-up-right" class="w-4 h-4"></i>
@@ -428,11 +429,11 @@
             </div>
         </section>
 
-        <!-- Technical Skillset Stacks and Tools - RE-INTEGRATED FROM PREVIOUS VERSION -->
+        <!-- Technical Skillset Stacks and Tools -->
         <section id="skills" class="py-12 md:py-16 border-t" style="background-color: var(--bg-deep); border-color: var(--card-border);">
             <div class="container mx-auto px-6 max-w-6xl">
                 <div class="fade-in mb-8 text-center">
-                    <h2 class="text-sm font-bold uppercase tracking-[0.3em] text-blue-500 mb-4 mono main-gradient">Technical Skillset</h2>
+                    <h2 class="text-sm font-bold uppercase tracking-[0.3em] mb-4 mono main-gradient">Technical Skillset</h2>
                     <h3 class="text-3xl md:text-5xl font-bold main-gradient">Stack & Tools</h3>
                 </div>
                 
@@ -540,7 +541,7 @@
         <section id="education" class="py-20 border-t" style="background-color: var(--bg-charcoal); border-color: var(--card-border);">
             <div class="container-standard">
                 <div class="fade-in mb-12 text-center">
-                    <h2 class="text-sm font-bold uppercase tracking-[0.3em] mb-4 mono main-gradient" style="color: var(--accent-blue);">Education</h2>
+                    <h2 class="text-sm font-bold uppercase tracking-[0.3em] mb-4 mono main-gradient">Education</h2>
                     <h3 class="text-2xl md:text-4xl font-bold main-gradient">Academic Qualifications</h3>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -587,7 +588,7 @@
         <section id="achievements" class="py-20 border-t" style="border-color: var(--card-border);">
             <div class="container-standard">
                 <div class="fade-in mb-16 text-center">
-                    <h2 class="text-sm font-bold uppercase tracking-[0.3em] mb-4 mono main-gradient" style="color: var(--accent-blue);">Achievements</h2>
+                    <h2 class="text-sm font-bold uppercase tracking-[0.3em] mb-4 mono main-gradient">Achievements</h2>
                     <h3 class="text-4xl md:text-5xl font-bold main-gradient">Recognitions</h3>
                 </div>
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -648,6 +649,7 @@
                             <label>Your Email</label>
                         </div>
                         <div class="floating-label">
+                            <input type="hidden" name="_subject" value="New Portfolio Message!">
                             <textarea name="message" id="message" rows="3" placeholder=" " required></textarea>
                             <label>Message</label>
                         </div>
